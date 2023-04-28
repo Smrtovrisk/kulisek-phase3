@@ -1,0 +1,137 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1" />
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
+        <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;500&display=swap" rel="stylesheet">
+    
+    <style>
+body {
+            background-color: #f5f6fa;
+            font-family: 'Roboto', Arial, sans-serif;
+            margin-top: 60px;
+        }
+
+h2 {
+    text-align: center;
+    color: #2c3e50;
+    font-weight: bold;
+    margin-bottom: 30px;
+    text-shadow: 1px 1px 3px rgba(0, 0, 0, 0.1);
+}
+
+.centered-container {
+    position: relative;
+    margin: 0 auto;
+    border: 1px solid #e0e6ed;
+    padding: 20px;
+    background-color: #ffffff;
+    border-radius: 10px;
+    width: 500px;
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.05);
+}
+
+.container p {
+    text-align: center;
+    color: #6c757d;
+    font-size: 16px;
+    margin-bottom: 20px;
+}
+
+.input-short {
+    width: 100%;
+}
+
+.form-label {
+    color: #34495e;
+    font-weight: bold;
+}
+
+.btn-custom {
+    background-color: #3498db;
+    border: none;
+    color: #ffffff;
+    width: 100%;
+    font-weight: bold;
+    margin-top: 10px;
+    padding: 12px 0;
+    border-radius: 5px;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+}
+
+.btn-custom:hover {
+    background-color: #2980b9;
+    color: #ffffff;
+    box-shadow: 0 3px 10px rgba(0, 0, 0, 0.15);
+}
+
+a {
+    display: inline-block;
+    margin-top: 10px;
+    text-align: center;
+    color: #3498db;
+    text-decoration: none;
+    width: 100%;
+}
+
+a:hover {
+    text-decoration: underline;
+}
+
+.typeofuser-label {
+    font-size: 14px;
+}
+
+
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-bottom: 20px;
+        }
+
+        th, td {
+            border: 1px solid #d3d8de;
+            padding: 8px;
+            text-align: left;
+        }
+
+        th {
+            background-color: #f2f2f2;
+        }
+
+        a {
+            color: #3498db;
+            text-decoration: none;
+        }
+
+        a:hover {
+            text-decoration: underline;
+        }
+    </style>
+    <title>Product List</title>
+</head>
+<body>
+    <h2>Product List</h2>
+    <div class="container centered-container">
+        <table>
+            <tr>
+                <th>PId</th>
+                <th>PName</th>
+                <th>Price</th>
+                <th>Quantity</th>
+                <th>Image URL</th>
+                <th>Place Order</th>
+            </tr>
+            <tr th:each="product:${products}">
+                <td th:text="${product.pid}"></td>
+                <td th:text="${product.pname}"></td>
+                <td th:text="${product.price}"></td>
+                <td th:text="${product.qty}"></td>
+                <td><img th:src="${product.productimage}" width="50px" height="50px"/></td>
+                <td><a th:href="@{/placeOrder/{pid} (pid=${product.pid}) }">Place Order</a></td>
+            </tr>
+        </table>
+        <a class="btn-custom" th:href="@{/}">Back</a>
+    </div>
+</body>
+</html>

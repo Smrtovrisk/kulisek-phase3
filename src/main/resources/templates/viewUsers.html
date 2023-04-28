@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1" />
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;500&display=swap" rel="stylesheet">
+    <title>View Users</title>
+    <style>
+        body {
+            background-color: #f5f6fa;
+            font-family: 'Roboto', Arial, sans-serif;
+            margin-top: 60px;
+        }
+
+        h2 {
+            text-align: center;
+            color: #2c3e50;
+            font-weight: bold;
+            margin-bottom: 30px;
+            text-shadow: 1px 1px 3px rgba(0, 0, 0, 0.1);
+        }
+
+        .container {
+            position: relative;
+            margin: 0 auto;
+            border: 1px solid #e0e6ed;
+            padding: 20px;
+            background-color: #ffffff;
+            border-radius: 10px;
+            width: 80%;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.05);
+        }
+
+        .form-group {
+            margin-bottom: 20px;
+        }
+    </style>
+</head>
+<body>
+    <h2>View Users</h2>
+    <div class="container">
+        <form th:action="@{/searchUsers}" method="get">
+            <div class="form-group">
+                <input type="text" class="form-control" name="searchTerm" placeholder="Search users by email" />
+            </div>
+            <button type="submit" class="btn btn-primary">Search</button>
+        </form>
+
+        <table class="table table-bordered">
+            <thead>
+                <tr>
+                    <th>User Email</th>
+                    <th>Type of User</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr th:each="user:${users}">
+                    <td th:text="${user.emailid}"></td>
+                    <td th:text="${user.typeofuser}"></td>
+                </tr>
+            </tbody>
+        </table>
+        <a class="btn-custom" th:href="@{/adminHome}">Back</a>
+    </div>
+</body>
+</html>
